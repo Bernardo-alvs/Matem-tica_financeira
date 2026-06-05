@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simulador de viabilidade econômica para produção hidropônica de alface.">
+  <title>Simulador de Viabilidade Econômica para Hidroponia</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-texto">
+        <h1>Simulador de Viabilidade Econômica para Hidroponia</h1>
+        <p>Matemática Financeira Aplicada às Ciências Agrárias</p>
+      </div>
+      <img src="OIP.webp" alt="Logo do projeto hidropônico" class="hero-logo" loading="eager">
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="painel">
+      <h2>Parâmetros produtivos</h2>
+      <div class="grid-2">
+        <label for="investimento">Investimento Inicial (R$)</label>
+        <input id="investimento" type="number" inputmode="decimal" value="125700" aria-label="Investimento inicial">
+
+        <label for="plantas">Quantidade de Plantas por Ciclo</label>
+        <input id="plantas" type="number" inputmode="numeric" value="4320" aria-label="Quantidade de plantas por ciclo">
+
+        <label for="preco">Preço de Venda por Planta (R$)</label>
+        <input id="preco" type="number" step="0.01" inputmode="decimal" value="2.50" aria-label="Preço de venda por planta">
+
+        <label for="duracaoCiclo">Duração do Ciclo (dias)</label>
+        <input id="duracaoCiclo" type="number" inputmode="numeric" value="35" aria-label="Duração do ciclo">
+      </div>
+
+      <div class="cenario-box">
+        <h3>Cenários de mercado</h3>
+        <div class="cenario-botoes">
+          <button class="cenario-btn" type="button" data-preco="2.00">Pessimista</button>
+          <button class="cenario-btn ativo" type="button" data-preco="2.50">Realista</button>
+          <button class="cenario-btn" type="button" data-preco="3.00">Otimista</button>
+        </div>
+      </div>
+
+      <div class="acoes">
+        <button id="btnValoresProjeto" type="button">Usar Valores do Projeto</button>
+        <button id="btnResetar" class="secundario" type="button">Resetar</button>
+      </div>
+    </section>
+
+    <section class="painel">
+      <h2>Custos operacionais agrícolas</h2>
+      <div class="grid-2">
+        <label for="nomeCusto">Tipo de custo</label>
+        <input id="nomeCusto" type="text" placeholder="Ex: Energia elétrica" aria-label="Nome do custo">
+
+        <label for="valorCusto">Valor do custo (R$)</label>
+        <input id="valorCusto" type="number" step="0.01" inputmode="decimal" placeholder="Ex: 655" aria-label="Valor do custo">
+      </div>
+
+      <div class="acoes">
+        <button id="btnAdicionarCusto" type="button">Adicionar custo</button>
+      </div>
+
+      <ul id="listaCustos" class="lista-custos"></ul>
+    </section>
+
+    <section class="painel">
+      <h2>Indicadores econômicos</h2>
+      <div class="resultado-grid">
+        <article class="card"><h3>Receita bruta</h3><p id="receita">R$ 0,00</p></article>
+        <article class="card"><h3>Custo operacional total</h3><p id="custoTotal">R$ 0,00</p></article>
+        <article class="card"><h3>Custo por planta</h3><p id="custoPlanta">R$ 0,00</p></article>
+        <article class="card"><h3>Lucro líquido</h3><p id="lucro">R$ 0,00</p></article>
+        <article class="card"><h3>Margem de lucro</h3><p id="margem">0%</p></article>
+        <article class="card"><h3>ROI</h3><p id="roi">0%</p></article>
+        <article class="card"><h3>Payback</h3><p id="payback">Sem retorno</p></article>
+        <article class="card"><h3>Payback em dias</h3><p id="paybackDias">0 dias</p></article>
+      </div>
+    </section>
+
+    <section class="painel">
+      <h2>Gráficos financeiros</h2>
+      <p id="graficoStatus" class="texto-auxiliar">Gráficos atualizados automaticamente.</p>
+      <div class="graficos-grid">
+        <article class="grafico-card">
+          <h3>Receita × Custos × Lucro</h3>
+          <canvas id="graficoResultado" aria-label="Gráfico de receita, custos e lucro"></canvas>
+        </article>
+        <article class="grafico-card">
+          <h3>Distribuição dos custos operacionais</h3>
+          <canvas id="graficoCustos" aria-label="Gráfico de distribuição dos custos"></canvas>
+        </article>
+        <article class="grafico-card full-width">
+          <h3>Payback: recuperação do investimento</h3>
+          <canvas id="graficoPayback" aria-label="Gráfico de payback"></canvas>
+        </article>
+      </div>
+    </section>
+
+    <section class="painel interpretacao">
+      <h2>Interpretação dos resultados</h2>
+      <p id="interpretacao">Aguardando cálculo...</p>
+    </section>
+  </main>
+
+  <script defer src="script.js"></script>
+</body>
+</html>
